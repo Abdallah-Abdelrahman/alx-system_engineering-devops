@@ -1,2 +1,2 @@
 #!/bin/bash
-echo $(cut -c-1 < test) | tr -d " "
+cat $1 | echo $(cut -c-1) | tr -d " "
