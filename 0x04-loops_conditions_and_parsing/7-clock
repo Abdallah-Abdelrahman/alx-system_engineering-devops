@@ -12,6 +12,6 @@ while ((h < 13)); do
 		echo "$m"
 		((m++))
 	done
-	m=0
+	m=1
 	((h++))
 done
