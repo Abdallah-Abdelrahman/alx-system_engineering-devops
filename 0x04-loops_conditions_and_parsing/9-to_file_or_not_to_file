@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 # gives you information about the school file.
 
-[ -e school ] && echo "school file exists" && [ -s school ] && echo "school file is not empty" || echo "school file is empty" && [-f school ] && echo "school is a regular file" || echo "school file does not exist"
+[ -e school ] && echo "school file exists" && [ -s school ] && echo "school file is not empty" || echo "school file is empty" && [ -f school ] && echo "school is a regular file" || echo "school file does not exist"
