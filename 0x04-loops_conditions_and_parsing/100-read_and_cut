@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 # displays the content of the file /etc/passwd
+# Your script should only display:
+# username
+# user id
+# Home directory path for the user
 
 while IFS=: read -r f1 _ f3 _ _ f6; do
 	echo "$f1:$f3:$f6"
