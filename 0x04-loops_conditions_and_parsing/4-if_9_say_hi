@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# print `Best School` using while loop
+# and on the 9th iteration print `hi`
+
+count=0
+
+while ((count < 10)); do
+	echo "Best School"
+	if ((count == 8)); then
+		echo "Hi"
+	fi
+	((count++))
+done

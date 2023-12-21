@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 # print string Best School 10 times using until loop
 
 count=10
