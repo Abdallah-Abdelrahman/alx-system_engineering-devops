@@ -1,5 +1,8 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <unistd.h>
+
+int infinite_while(void);
 
 /**
  * main - program that creates 5 zombie processes
@@ -8,6 +11,17 @@
  */
 int main(void)
 {
+	int i;
+
+	for (i = 0; i < 5; i++)
+	{
+		int fid = fork();
+
+		if (fid == 0)
+			exit(0);
+		printf("Zombie process created, PID: %i\n", fid);
+	}
+	infinite_while();
 	return (0);
 }
 
