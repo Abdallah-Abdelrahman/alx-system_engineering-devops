@@ -6,19 +6,19 @@ file='/var/run/my_process.pid'
 case "$1" in
 	"start")
 		./manage_my_process &
-		echo "$!" > "$file"
+		echo "$(pgrep -f manage_my_process)" > "$file"
 		echo 'manage_my_process started'
 		;;
 	"stop")
 		rm "$file"
-		kill "$!"
+		kill "$(pgrep -f manage_my_process)"
 		echo 'manage_my_process stopped'
 		;;
 	"restart")
-		kill "$!"
+		kill "$(pgrep -f manage_my_process)"
 		rm "$file"
 		./manage_my_process &
-		echo "$!" > "$file"
+		echo "$(pgrep -f manage_my_process)" > "$file"
 		echo 'manage_my_process restarted'
 		;;
 	*) echo 'Usage: manage_my_process {start|stop|restart}';;
