@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# shellcheck disable=SC2064
 # Bash script that:
 # Creates the file /var/run/myscript.pid containing its PID
 # Displays 'To infinity and beyond' indefinitely
@@ -9,13 +10,13 @@
 file='/var/run/myscript.pid'
 
 # Creating an associative array
-declare -A signals=([TERM]="echo I hate the kill command; pkill -f -9 100-process_and_pid_file; rm $file" [INT]="echo Y U no love me?!" [QUIT]="rm $file")
+declare -A signals=([TERM]="echo I hate the kill command; rm $file; exit" [INT]="echo Y U no love me?!" [QUIT]="rm $file; exit")
 
 # create file containing its PID
 echo "$$" > $file
 
 for sig in "${!signals[@]}"; do
-	trap '${signals[$sig]}' "$sig"
+	trap "${signals[$sig]}" "$sig"
 done
 while ((1)); do
 	echo "To infinity and beyond"
