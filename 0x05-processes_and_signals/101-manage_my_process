@@ -10,7 +10,7 @@ case "$1" in
 		echo 'manage_my_process started'
 		;;
 	"stop")
-		kill "$(< "${file}")"
+		kill "$(< "$file")"
 		rm "$file"
 		echo 'manage_my_process stopped'
 		;;
