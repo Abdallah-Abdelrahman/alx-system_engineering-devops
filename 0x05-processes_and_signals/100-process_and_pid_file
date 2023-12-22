@@ -6,10 +6,10 @@
 # Displays 'Y U no love me?!' when receiving a SIGINT signal
 # Deletes the file /var/run/myscript.pid and terminates itself when receiving a SIGQUIT or SIGTERM signal
 
-file=/var/run/myscript.pid
+file='/var/run/myscript.pid'
 
 # Creating an associative array
-declare -A signals=([TERM]="echo I hate the kill command; rm $file" [INT]="echo Y U no love me?!" [QUIT]="rm $file")
+declare -A signals=([TERM]="echo I hate the kill command; pkill -f -9 100-process_and_pid_file; rm $file" [INT]="echo Y U no love me?!" [QUIT]="rm $file")
 
 # create file containing its PID
 echo "$$" > $file
