@@ -6,5 +6,6 @@ file { 'config':
 	    IdentityFile ~/.ssh/school
 	    PasswordAuthentication no
 ',
-  owner   => 'root'
+  owner   => 'root',
+  mode    => '0644'
 }
