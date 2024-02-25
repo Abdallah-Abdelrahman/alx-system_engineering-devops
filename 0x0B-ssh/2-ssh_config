@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 # configuration file
-Host "school"
-    Hostname "52.91.118.253"
-    IdentityFile "~/.ssh/school"
-    PasswordAuthentication "no"
+Host *
+    IdentityFile ~/.ssh/school
+    PasswordAuthentication no
