@@ -1,9 +1,10 @@
 # ssh configuration file
 file { 'config':
   path    => '~/.ssh/config',
-  content => "
+  content => '
 	Host *
 	    IdentityFile ~/.ssh/school
 	    PasswordAuthentication no
-",
+',
+  owner   => 'root'
 }
