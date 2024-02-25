@@ -1,6 +1,6 @@
 # ssh configuration file
 file { 'config':
-  path    => '~/.ssh/config',
+  path    => "${facts['user_home']}/.ssh/config",
   content => "
 	Host *
 	    IdentityFile ~/.ssh/school
