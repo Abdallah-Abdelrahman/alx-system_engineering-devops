@@ -1,5 +1,5 @@
 # ssh configuration file
-file { '/home/ubuntu/.ssh/config':
+file { '/ssh/ssh_config':
   content => "
 	Host *
 	    IdentityFile ~/.ssh/school
