@@ -1,7 +1,11 @@
 # ssh configuration file
-file { '/ssh/ssh_config':
+file {'/etc/ssh':
+  ensure => directory
+}
+file { '/etc/ssh/ssh_config':
+  ensure  => present,
   content => "
-	Host *
+	    ${file('/etc/ssh/ssh_config')}\n
 	    IdentityFile ~/.ssh/school
 	    PasswordAuthentication no
 ",
