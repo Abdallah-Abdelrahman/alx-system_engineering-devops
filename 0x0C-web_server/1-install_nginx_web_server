@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 # configure nignx when querying at root '/' with a GET request using curl
 
-sudo su << EOF > /dev/null 2>&1
-sudo apt update -y
-sudo apt install nginx -y
-sudo ufw allow 'Nginx HTTP'
+sudo su << EOF
+apt-get update -y
+apt-get install nginx -y
+ufw allow 'Nginx HTTP'
 echo 'Hello World!' > /var/www/html/index.html
-sudo service nginx restart
+service nginx restart
 exit
 EOF
