@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# configure nignx when querying at root '/' with a GET request using curl
+
+echo 'Hello World!' > /var/www/html/index.html
+service nginx restart
