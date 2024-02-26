@@ -2,9 +2,9 @@
 # configure nignx when querying at root '/' with a GET request using curl
 
 sudo apt update -y
-sudo apt install nginx -y
-sudo ufw allow 'Nginx HTTP'
 sudo su << EOF
+apt install nginx -y
+ufw allow 'Nginx HTTP'
 echo 'Hello World!' > /var/www/html/index.html
 exit
 EOF
