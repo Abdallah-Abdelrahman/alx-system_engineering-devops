@@ -1,6 +1,3 @@
 #!/usr/bin/env bash
 # configure nignx when querying at root '/' with a GET request using curl
 
-sudo su << EOF
-apt update -y
-EOF
