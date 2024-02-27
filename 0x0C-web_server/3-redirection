@@ -3,7 +3,7 @@
 
 #line="# pass PHP scripts to FastCGI server"
 #repl="location /redirect_me {\n\t\treturn 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n\t}"
-file="/etc/nginx/sites-available/"
+file="/etc/nginx/sites-available"
 
 sudo apt-get update
 sudo apt-get install nginx -y
@@ -18,10 +18,9 @@ echo -e "server {
 	root /var/www/html;
 	index index.html index.htm index.nginx-debian.html;
 
-	server_name _;
-
 	location / {
 		return 200 'Hellow World!';
+		add_header Content-Type text/plain;
 	}
 	location /redirect_me {
 		return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
