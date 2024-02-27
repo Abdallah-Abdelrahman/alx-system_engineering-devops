@@ -3,13 +3,14 @@
 
 #line="# pass PHP scripts to FastCGI server"
 #repl="location /redirect_me {\n\t\treturn 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n\t}"
-file="/etc/nginx/sites-enabled/default"
+file="/etc/nginx/sites-available/default"
 
 sudo apt update
 sudo apt install nginx -y
 sudo ufw allow 'Nginx HTTP'
 
-echo -e "server {
+sudo tee "$file" << EOF > /dev/null
+server {
 	listen 80 default_server;
 	listen [::]:80 default_server;
 
@@ -24,6 +25,9 @@ echo -e "server {
 	location /redirect_me {
 		return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
 	}
-}" > $file
+}
+EOF
+
+
 
 sudo service nginx restart
