@@ -9,8 +9,6 @@ sudo apt update
 sudo apt install nginx -y
 sudo ufw allow 'Nginx HTTP'
 
-rm "$file"
-sudo su << EOF
 echo -e "server {
 	listen 80 default_server;
 	listen [::]:80 default_server;
@@ -27,7 +25,5 @@ echo -e "server {
 		return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
 	}
 }" > $file
-exit
-EOF
 
 sudo service nginx restart
