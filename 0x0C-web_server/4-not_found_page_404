@@ -4,12 +4,13 @@
 # installed nginx if it's not installed already
 [[ ! $(dpkg-query -W nginx) ]] > /dev/null 2>&1 && apt update && apt install nginx -y
 
-ufw allow 'Nginx HTTP'
+# ufw allow 'Nginx HTTP'
 
 echo 'Hello World!' > /var/www/html/index.html
 echo "Ceci n'est pas une page" > /var/www/html/404.html
 
-echo "server {
+cat << EOF > /etc/nginx/sites-available/default
+server {
 
 	listen 80 default_server;
 	listen [::]:80 default_server;
@@ -35,9 +36,7 @@ echo "server {
                 internal;
         }
 
-}" > /etc/nginx/sites-available/default
-
-rm /etc/nginx/sites-enabled/default
-ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/
+}
+EOF
 
 service nginx restart

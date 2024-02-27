@@ -45,6 +45,7 @@ file {'/etc/nginx/sites-enabled/default':
 }
 
 service {'nginx':
-  ensure => running,
-  enable => true,
+  ensure    => running,
+  enable    => true,
+  subscribe => ['/etc/nginx/sites-enabled/default']
 }
