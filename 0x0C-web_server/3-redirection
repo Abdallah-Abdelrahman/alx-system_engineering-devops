@@ -3,26 +3,29 @@
 
 #line="# pass PHP scripts to FastCGI server"
 #repl="location /redirect_me {\n\t\treturn 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n\t}"
+file="/etc/nginx/sites-available/default"
 
 sudo apt update
 sudo apt install nginx -y
 sudo ufw allow 'Nginx HTTP'
 
-cat > /etc/nginx/sites-availabe/default << EOF
-server {
+sudo su << EOF
+echo -e "server {
 	listen 80 default_server;
 	listen [::]:80 default_server;
+
 	root /var/www/html;
+	index index.html index.htm index.nginx-debian.html;
+
 	server_name _;
+
 	location / {
-		# First attempt to serve request as file, then
-		# as directory, then fall back to displaying a 404.
-		try_files \$uri \$uri/ =404;
+		return 200 'Hellow World!';
 	}
 	location /redirect_me {
 		return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
 	}
-}
+}" > $file
 EOF
 
 sudo service nginx restart
