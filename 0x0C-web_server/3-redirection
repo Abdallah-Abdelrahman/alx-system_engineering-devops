@@ -4,7 +4,7 @@
 line="# pass PHP scripts to FastCGI server"
 repl="location /redirect_me {\n\t\treturn 301 https://www.youtube.com/watch?v=QH2-TGUlwu4\n\t}"
 
-apt update
-apt install nginx -y
-sudo sed -i "s@$line@$repl@g" /etc/nginx/sites-available/default
+sudo apt update
+sudo apt install nginx -y
+sudo sed -i "s@$line@$repl@g" /etc/nginx/sites-enabled/default
 sudo service restart
