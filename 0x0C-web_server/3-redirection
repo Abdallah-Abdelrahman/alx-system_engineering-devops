@@ -9,7 +9,7 @@ sudo apt update
 sudo apt install nginx -y
 sudo ufw allow 'Nginx HTTP'
 
-echo "server {
+echo -e "server {
 	listen 80 default_server;
 	listen [::]:80 default_server;
 
