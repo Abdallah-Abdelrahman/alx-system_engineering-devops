@@ -9,17 +9,13 @@
 package {'nginx': ensure => installed}
 
 file {'/var/www/html/index.html':
-  ensure  => present,
+  ensure  => file,
   content => 'Hellow World!',
-}
-
-file {'/var/www/html/404.html':
-  ensure  => present,
-  content => "Ceci n'est pas une page",
+  require => Package['nginx'],
 }
 
 file {'/etc/nginx/sites-enabled/default':
-  ensure  => present,
+  ensure  => file,
   content => "server {
 
 	listen 80 default_server;
@@ -46,10 +42,12 @@ file {'/etc/nginx/sites-enabled/default':
                 internal;
         }
 
- }"
+ }",
+  require => Package['nginx'],
 }
 
 service {'nginx':
-  ensure => running,
-  enable => true,
+  ensure  => running,
+  enable  => true,
+  require => File['/etc/nginx/sites-enabled/default'],
 }
