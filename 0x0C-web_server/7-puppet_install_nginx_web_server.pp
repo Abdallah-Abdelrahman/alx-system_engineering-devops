@@ -8,11 +8,7 @@
 
 package {'nginx': ensure => installed}
 
-file {'/var/www/html/index.html':
-  ensure  => file,
-  content => 'Hello World!',
-  require => Package['nginx'],
-}
+file {'/var/www/html/index.html': content => 'Hello World!'}
 
 file {'/etc/nginx/sites-available/default':
   ensure  => file,
@@ -43,11 +39,10 @@ file {'/etc/nginx/sites-available/default':
         }
 
  }",
-  require => Package['nginx'],
 }
 
 service {'nginx':
-  ensure    => running,
-  enable    => true,
-  subscribe => File['/etc/nginx/sites-available/default'],
+  ensure  => running,
+  enable  => true,
+  require => Package['nginx'],
 }
