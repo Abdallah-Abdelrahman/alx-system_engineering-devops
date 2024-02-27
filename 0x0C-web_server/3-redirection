@@ -8,7 +8,7 @@ sudo apt update
 sudo apt install nginx -y
 sudo ufw allow 'Nginx HTTP'
 
-cat > /etch/nginx/sites-availabe/default << EOF
+cat > /etc/nginx/sites-availabe/default << EOF
 server {
 	listen 80 default_server;
 	listen [::]:80 default_server;
