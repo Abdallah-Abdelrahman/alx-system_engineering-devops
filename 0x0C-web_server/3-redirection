@@ -3,11 +3,10 @@
 
 #line="# pass PHP scripts to FastCGI server"
 #repl="location /redirect_me {\n\t\treturn 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n\t}"
-file="/etc/nginx/sites-available"
 
-sudo apt-get update
-sudo apt-get install nginx -y
-sudo ufw allow 'Nginx HTTP'
+apt-get update
+apt-get install nginx -y
+ufw allow 'Nginx HTTP'
 
 rm /etc/nginx/sites-enabled/default
 
@@ -25,8 +24,8 @@ echo -e "server {
 	location /redirect_me {
 		return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
 	}
-}" | sudo tee "$file"/new_conf > /dev/null
+}" > /etc/nginx/sites-available/new_conf
 
-sudo ln -s "$file"/new_conf /etc/nginx/sites-enabled/
+ln -s /etc/nginx/sites-available/new_conf /etc/nginx/sites-enabled/
 
-sudo service nginx restart
+service nginx restart
