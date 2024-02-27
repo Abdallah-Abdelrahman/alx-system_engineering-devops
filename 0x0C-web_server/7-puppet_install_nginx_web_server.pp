@@ -13,7 +13,7 @@ file {'/var/www/html/index.html':
   content => 'Hellow World!',
 }
 
-file {'/etc/nginx/sites-enabled/default':
+file {'/etc/nginx/sites-available/default':
   ensure  => file,
   content => "server {
 
@@ -47,5 +47,5 @@ file {'/etc/nginx/sites-enabled/default':
 service {'nginx':
   ensure    => running,
   enable    => true,
-  subscribe => ['/etc/nginx/sites-enabled/default']
+  subscribe => ['/etc/nginx/sites-available/default'],
 }
