@@ -9,12 +9,12 @@
 package {'nginx': ensure => installed}
 
 file {'/var/www/html/index.html':
-  esnure  => present,
+  ensure  => present,
   content => 'Hellow World!',
 }
 
 file {'/var/www/html/404.html':
-  esnure  => present,
+  ensure  => present,
   content => "Ceci n'est pas une page",
 }
 
@@ -51,5 +51,5 @@ file {'/etc/nginx/sites-enabled/default':
 
 service {'nginx':
   ensure => running,
-  enable => true
+  enable => true,
 }
