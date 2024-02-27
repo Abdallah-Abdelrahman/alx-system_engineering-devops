@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# Debug apache server to return `Hello Holberton` when queried at root
+service apache2 restart
