@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 # custom 404 page that contains the string Ceci n'est pas une page
 
-apt update
-apt install nginx -y
+# installed nginx if it's not installed already
+[[ $(dpkg-query -W nginx) ]] > /dev/null 2>&1 && apt update && apt install nginx -y
+
 ufw allow 'Nginx HTTP'
+
 echo 'Hello World!' > /var/www/html/index.html
 echo "Ceci n'est pas une page" > /var/www/html/404.html
 
