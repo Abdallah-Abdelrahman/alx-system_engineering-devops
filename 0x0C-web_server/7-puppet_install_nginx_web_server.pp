@@ -47,10 +47,10 @@ file {'/etc/nginx/sites-enabled/default':
 }
 
 firewall { '100 allow http':
-  ensure  => present,
-  action  => accept,
-  proto   => 'tcp',
-  port    => '80',
+  ensure => present,
+  action => accept,
+  proto  => 'tcp',
+  port   => 80
 }
 
 service {'nginx':
