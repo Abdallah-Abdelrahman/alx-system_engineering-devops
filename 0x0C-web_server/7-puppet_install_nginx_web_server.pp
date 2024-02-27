@@ -11,6 +11,7 @@ package {'nginx': ensure => installed}
 file {'/var/www/html/index.html':
   ensure  => file,
   content => 'Hellow World!',
+  require => Package['nginx'],
 }
 
 file {'/etc/nginx/sites-available/default':
@@ -42,6 +43,7 @@ file {'/etc/nginx/sites-available/default':
         }
 
  }",
+  require => Package['nginx'],
 }
 
 service {'nginx':
