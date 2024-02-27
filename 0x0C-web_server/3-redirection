@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 # Configure Nginx server so that /redirect_me is redirecting to another page
 
-line="Hello World!"
-repl="<head>\n\t<meta http-equiv=\"Refresh\" content=\"0; URL=https://www.youtube.com/watch?v=QH2-TGUlwu4\" />\n</head>"
+line="# pass PHP scripts to FastCGI server"
+repl="location /redirect_me {\n\t\treturn 301 https://www.youtube.com/watch?v=QH2-TGUlwu4\n\t}"
 
-sudo sed -i "s@$line@$repl@g" /var/www/html/index.html
-sudo service nginx restart
+apt update
+apt install nginx -y
+sudo sed -i "s@$line@$repl@g" /etc/nginx/sites-available/default
+sudo service restart
