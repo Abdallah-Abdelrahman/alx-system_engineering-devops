@@ -7,3 +7,4 @@ repl="location /redirect_me {\n\t\treturn 301 https://www.youtube.com/watch?v=QH
 sudo su << EOF
 sed -i "s@$line@$repl@g" /etc/nginx/sites-available/default
 EOF
+sudo service nginx restart
