@@ -5,8 +5,8 @@
 #repl="location /redirect_me {\n\t\treturn 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n\t}"
 file="/etc/nginx/sites-available/default"
 
-sudo apt update
-sudo apt install nginx -y
+sudo apt-get update
+sudo apt-get install nginx -y
 sudo ufw allow 'Nginx HTTP'
 
 echo -e "server {
