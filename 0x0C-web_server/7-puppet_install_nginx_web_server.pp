@@ -43,18 +43,9 @@ file {'/etc/nginx/sites-enabled/default':
         }
 
  }",
-  require => Package['nginx'],
-}
-
-firewall { '100 allow http':
-  ensure => present,
-  action => accept,
-  proto  => 'tcp',
-  port   => 80
 }
 
 service {'nginx':
-  ensure  => running,
-  enable  => true,
-  require => File['/etc/nginx/sites-enabled/default'],
+  ensure => running,
+  enable => true,
 }
