@@ -26,4 +26,6 @@ echo -e "server {
 	}
 }" | sudo tee "$file" > /dev/null
 
+sudo ln -s "$file" /etc/nginx/sites-enabled/
+
 sudo service nginx restart
