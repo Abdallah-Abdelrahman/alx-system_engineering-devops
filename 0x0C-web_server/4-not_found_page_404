@@ -7,7 +7,7 @@ ufw allow 'Nginx HTTP'
 echo 'Hello World!' > /var/www/html/index.html
 echo "Ceci n'est pas une page" > /var/www/html/404.html
 
-cat  << EOF > /etc/nginx/sites-available/default
+echo " 
 server {
 	listen 80 default_server;
 	listen [::]:80 default_server;
@@ -33,6 +33,6 @@ server {
                 internal;
         }
 
-}
-EOF
+}" > /etc/nginx/sites-available/default
+
 service nginx restart
