@@ -5,7 +5,7 @@ package {'haproxy': ensure => installed}
 file_line {'/etc/nginx/sites-enabled/default':
   ensure  => present,
   after   => 'server {',
-  match   => "add_header X-Served-By ${hostname};",
+  line    => "add_header X-Served-By \$hostname;",
   require => Package['nginx'],
 }
 
