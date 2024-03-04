@@ -5,9 +5,16 @@
 # Make sure that HAproxy can be managed via an init script
 # Make sure that your servers are configured with the right hostnames
 
-apt install haproxy
+apt update
+apt install haproxy -y
 
+echo "ENABLED=1" >> /etc/default/haproxy
 echo "backend web_backend
 	balance roundrobin
-	server 512726-web-01 52.91.118.253
-	server 512726-web-02 35.153.16.72" >> /etc/haproxy/haproxy.cfg
+	server 512726-web-01 52.91.118.253:80 check
+	server 512726-web-02 35.153.16.72:80 check
+	frontend http
+		bind *:80
+		mode http
+		default_backend web_backend" >> /etc/haproxy/haproxy.cfg
+service haproxy restart
