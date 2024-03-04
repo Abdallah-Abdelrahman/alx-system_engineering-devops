@@ -30,6 +30,6 @@ file {'/etc/nginx/sites-enabled/default':
 service {'nginx':
   ensure    => running,
   enable    => true,
-  subscribe => Package['nginx'],
+  subscribe => File['/etc/nginx/sites-enabled/default'],
 }
 
