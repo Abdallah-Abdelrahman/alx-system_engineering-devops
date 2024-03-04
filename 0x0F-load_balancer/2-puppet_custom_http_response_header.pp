@@ -8,13 +8,13 @@ file {'/etc/nginx/sites-enabled/default':
 	server {
 		listen 80 default_server;
 		listen [::]:80 default_server;
-	
+
 		add_header X-Served-By ${hostname};
 		root /var/www/html;
 	
 		# Add index.php to the list if you are using PHP
 		index index.html index.htm index.nginx-debian.html;
-	
+
 		server_name _;
 	
 		location / {
@@ -24,11 +24,12 @@ file {'/etc/nginx/sites-enabled/default':
 		}
 	}
 ",
+  require => Package['nginx'],
 }
 
 service {'nginx':
-  ensure  => running,
-  enable  => true,
-  require => Package['nginx'],
+  ensure    => running,
+  enable    => true,
+  subscribe => Package['nginx'],
 }
 
