@@ -12,7 +12,7 @@ file_line {'default':
 }
 
 service {'nginx':
-  ensure    => running,
-  enable    => true,
-  subscribe => File['/etc/nginx/sites-enabled/default'],
+  ensure => running,
+  enable => true,
+  rquire => Package['nginx'],
 }
