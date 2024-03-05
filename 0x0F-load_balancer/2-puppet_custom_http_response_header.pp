@@ -19,6 +19,7 @@ node 'default' {
   file_line { 'nginx_custom_header':
     path    => '/etc/nginx/sites-available/default',
     line    => $header,
+    match   => '^\\s*add_header',
     after   => 'server {',
     require => Package['nginx'],
   }
