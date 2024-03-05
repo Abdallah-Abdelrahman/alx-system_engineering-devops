@@ -16,6 +16,6 @@ file_line { '/etc/nginx/sites-enabled/default':
 
 # restart the service
 service { 'nginx':
-  ensure    => running,
-  enable    => true,
+  ensure => running,
+  enable => true,
 }
