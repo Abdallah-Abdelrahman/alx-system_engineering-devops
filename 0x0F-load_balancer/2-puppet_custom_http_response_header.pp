@@ -14,7 +14,7 @@ file_line {'default':
 }
 
 service {'nginx':
-  ensure  => running,
-  enable  => true,
-  require => Package['nginx'],
+  ensure    => running,
+  enable    => true,
+  subscribe => File['/etc/nginx/sites-available/default'],,
 }
