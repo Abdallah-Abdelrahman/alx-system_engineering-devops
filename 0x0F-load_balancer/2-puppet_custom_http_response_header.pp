@@ -1,6 +1,11 @@
 # We’d like you to automate the task of creating a custom HTTP header response, but with Puppet.
 
-package { 'nginx':ensure  => installed}
+exec {'update': command => '/usr/bin/apt-get update'}
+
+package { 'nginx':
+  ensure  => installed,
+  require => Exec['update'],
+}
 
 file_line { '/etc/nginx/sites-available/default':
   path    => '/etc/nginx/sites-available/default',
