@@ -8,6 +8,7 @@ package { 'nginx':
 }
 
 file_line { '/etc/nginx/sites-available/default':
+  path    => '/etc/nginx/sites-available/default',
   line    => "add_header X-Served-By ${hostname};",
   match   => 'add_header',
   after   => 'server {',
@@ -16,7 +17,6 @@ file_line { '/etc/nginx/sites-available/default':
 
 # restart the service
 service { 'nginx':
-  ensure  => running,
-  enable  => true,
-  require => File_line['/etc/nginx/sites-available/default']
+  ensure => running,
+  enable => true,
 }
