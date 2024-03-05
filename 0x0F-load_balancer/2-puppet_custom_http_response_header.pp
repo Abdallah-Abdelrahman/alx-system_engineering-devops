@@ -1,6 +1,7 @@
 # We’d like you to automate the task of creating a custom HTTP header response, but with Puppet.
 
 $header = "add_header X-Served-By \$hostname;"
+exec {'apt update': path => '/bin/apt'}
 package {'haproxy': ensure => installed}
 
 file_line {'default':
@@ -13,7 +14,7 @@ file_line {'default':
 }
 
 service {'nginx':
-  ensure => running,
-  enable => true,
+  ensure  => running,
+  enable  => true,
   require => Package['nginx'],
 }
