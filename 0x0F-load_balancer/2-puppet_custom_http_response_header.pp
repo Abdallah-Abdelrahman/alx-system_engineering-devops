@@ -15,5 +15,5 @@ file_line {'default':
 service {'nginx':
   ensure => running,
   enable => true,
-  rquire => Package['nginx'],
+  require => Package['nginx'],
 }
