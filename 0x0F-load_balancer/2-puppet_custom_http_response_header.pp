@@ -4,7 +4,6 @@
 # Ensure Nginx is installed
 package { 'nginx':
   ensure  => installed,
-  require => Exec['apt_update'],
 }
 
 # Define the custom response header
@@ -21,7 +20,6 @@ file_line { 'nginx_custom_header':
 
 # Ensure the Nginx service is running
 service { 'nginx':
-  ensure    => running,
-  enable    => true,
+  ensure => running,
+  enable => true,
 }
-
