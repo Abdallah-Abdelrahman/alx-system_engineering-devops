@@ -7,8 +7,7 @@ package { 'nginx':
   require => Exec['update'],
 }
 
-file_line { 'nginx_header':
-  path    => '/etc/nginx/sites-available/default',
+file_line { '/etc/nginx/sites-enabled/default':
   line    => "add_header X-Served-By ${hostname};",
   match   => 'add_header',
   after   => 'server {',
@@ -19,5 +18,4 @@ file_line { 'nginx_header':
 service { 'nginx':
   ensure    => running,
   enable    => true,
-  subscribe => File_line['nginx_header'],
 }
