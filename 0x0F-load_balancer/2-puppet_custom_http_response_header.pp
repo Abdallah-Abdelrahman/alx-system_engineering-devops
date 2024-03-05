@@ -13,7 +13,7 @@ package { 'nginx':
 $header = "\n\tadd_header X-Served-By \$hostname;\n"
 
 # Add the custom header to the Nginx configuration
-file_line { 'nginx_custom_header':
+file_line { 'nginx_header':
   path    => '/etc/nginx/sites-available/default',
   line    => $header,
   match   => '^\\s*add_header',
@@ -23,6 +23,7 @@ file_line { 'nginx_custom_header':
 
 # Ensure the Nginx service is running
 service { 'nginx':
-  ensure => running,
-  enable => true,
+  ensure    => running,
+  enable    => true,
+  subscribe => File_line['nginx_header'],
 }
