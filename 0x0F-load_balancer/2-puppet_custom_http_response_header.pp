@@ -1,13 +1,13 @@
 # We’d like you to automate the task of creating a custom HTTP header response, but with Puppet.
 
-$host = $hostname
+$header = "add_header X-Served-By \$hostname;"
 package {'haproxy': ensure => installed}
 
 file_line {'default':
   ensure  => present,
   path    => '/etc/nginx/sites-enabled/default',
   after   => 'server {',
-  line    => "add_header X-Served-By ${host};",
+  line    => $header,
   require => Package['nginx'],
 }
 
