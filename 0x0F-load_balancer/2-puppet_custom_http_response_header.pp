@@ -7,7 +7,7 @@ package {'haproxy': ensure => installed}
 
 file_line {'default':
   ensure  => present,
-  path    => '/etc/nginx/sites-enabled/default',
+  path    => '/etc/nginx/sites-available/default',
   match   => '^\\s*add_header',
   after   => 'server {',
   line    => $header,
@@ -17,5 +17,5 @@ file_line {'default':
 service {'nginx':
   ensure    => running,
   enable    => true,
-  subscribe => File['/etc/nginx/sites-enabled/default'],
+  subscribe => File['/etc/nginx/sites-available/default'],
 }
