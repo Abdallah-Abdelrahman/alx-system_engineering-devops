@@ -2,13 +2,15 @@
 
 $header = "add_header X-Served-By \$hostname;"
 
-exec {'update': command => '/usr/bin/apt-get update'}
-package {'haproxy': ensure => installed}
+# Ensure Nginx is installed
+package { 'nginx':
+  ensure  => installed,
+  require => Exec['apt_update'],
+}
 
 file_line {'default':
   ensure  => present,
   path    => '/etc/nginx/sites-available/default',
-  match   => '^\\s*add_header',
   after   => 'server {',
   line    => $header,
   require => Package['nginx'],
