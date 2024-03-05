@@ -28,6 +28,5 @@ node 'default' {
   service { 'nginx':
     ensure    => running,
     enable    => true,
-    subscribe => File_line['nginx_custom_header'],
   }
 }
