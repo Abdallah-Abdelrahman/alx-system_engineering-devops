@@ -3,11 +3,11 @@
 
 print_info()
 {
-	DOMAN="$1"
-	SUB_DOMAN="$2"
-	info="$(dig "$SUB_DOMAN"."$DOMAN" +noall +answer | awk 'NR==1{print $5}')"
-	record="$(dig "$SUB_DOMAN"."$DOMAN" +noall +answer | awk 'NR==1{print $4}')"
-	echo "The subdomain $SUB_DOMAN is a $record record and points to $info"
+	local domain=$1
+	local subdomain=$2
+	local record_info
+    	record_info=$(dig +noall +answer "${subdomain}.${domain}" | awk 'NR==1{print $5}')
+	echo "The subdomain ${subdomain} is a A record and points to ${record_info}"
 }
 
 if [ -z "$2" ]; then
