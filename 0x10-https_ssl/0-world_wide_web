@@ -6,7 +6,8 @@ print_info()
 	DOMAN="$1"
 	SUB_DOMAN="$2"
 	info="$(dig "$SUB_DOMAN"."$DOMAN" +noall +answer | awk 'NR==1{print $5}')"
-	echo "The subdomain $SUB_DOMAN is a A record and points to $info"
+	record="$(dig "$SUB_DOMAN"."$DOMAN" +noall +answer | awk 'NR==1{print $4}')"
+	echo "The subdomain $SUB_DOMAN is a $record record and points to $info"
 }
 
 if [ -z "$2" ]; then
