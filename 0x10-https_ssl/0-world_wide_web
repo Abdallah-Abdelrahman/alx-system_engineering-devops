@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 # script display ifromation about domains
-SUBS=("www" "lb-01" "web-01" "web-02")
-
 
 print_info()
 {
@@ -14,7 +12,7 @@ if [[ -n "$1" && "$2" ]]; then
 	print_info "$1" "$2"
 
 else
-	for sub in "${SUBS[@]}"; do
+	for sub in "www" "lb-01" "web-01" "web-02"; do
 		print_info "$1" "$sub"
 	done
 fi
