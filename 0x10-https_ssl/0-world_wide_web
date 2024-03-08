@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# script display ifromation about domains
+DOMAN="$1"
+SUB_DOMAN="$2"
+SUBS=("www" "lb-01" "web-01" "web-02")
+
+[[ -n "$DOMAN" && "$SUB_DOMAN" ]] && echo "The subdomain $SUB_DOMAN is a A record and points to $(dig "$SUB_DOMAN"."$DOMAN" +noall +answer | awk ' {print $5}')" && exit
+
+if [ -z "$SUB_DOMAN" ]; then
+	for sub in "${SUBS[@]}"; do
+		echo "The subdomain $sub is a A record and points to $(dig "$sub"."$DOMAN" +noall +answer | awk '{print $5}')"
+	done
+fi
