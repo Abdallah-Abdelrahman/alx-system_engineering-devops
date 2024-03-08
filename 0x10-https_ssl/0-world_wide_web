@@ -1,18 +1,20 @@
 #!/usr/bin/env bash
 # script display ifromation about domains
-DOMAN="$1"
-SUB_DOMAN="$2"
 SUBS=("www" "lb-01" "web-01" "web-02")
 
-info()
+
+print_info()
 {
-	for sub in "${SUBS[@]}"; do
-		echo "The subdomain $sub is a A record and points to $(dig "$sub"."$DOMAN" +noall +answer | awk '{print $5}')"
-	done
+	DOMAN="$1"
+	SUB_DOMAN="$2"
+	echo "The subdomain $SUB_DOMAN is a A record and points to $(dig "$SUB_DOMAN"."$DOMAN" +noall +answer | awk '{print $5}')"
 }
 
-[[ -n "$DOMAN" && "$SUB_DOMAN" ]] && echo "The subdomain $SUB_DOMAN is a A record and points to $(dig "$SUB_DOMAN"."$DOMAN" +noall +answer | awk '{print $5}')" && exit
+if [[ -n "$1" && "$2" ]]; then
+	print_info "$1" "$2"
 
-if [ -z "$SUB_DOMAN" ]; then
-	info
+elif [ -z "$SUB_DOMAN" ]; then
+	for sub in "${SUBS[@]}"; do
+		print_info "$1" "$sub"
+	done
 fi
