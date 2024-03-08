@@ -13,7 +13,7 @@ print_info()
 if [[ -n "$1" && "$2" ]]; then
 	print_info "$1" "$2"
 
-elif [ -z "$SUB_DOMAN" ]; then
+else
 	for sub in "${SUBS[@]}"; do
 		print_info "$1" "$sub"
 	done
