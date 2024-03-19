@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Fix this container so that Nginx is running as the nginx user
+# Fix for task1 short and sweet
 chown -R nginx:nginx /etc/nginx
 sed -i '1s/.*/user nginx;/' /etc/nginx/nginx.conf
 pkill apache2
