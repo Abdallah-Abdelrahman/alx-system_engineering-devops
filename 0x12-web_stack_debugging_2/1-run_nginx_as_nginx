@@ -2,6 +2,6 @@
 # Fix this container so that Nginx is running as the nginx user
 
 # Change the ownership of the Nginx process to the nginx user
-chown -R nginx:nginx /var/cache/nginx /var/run /var/log/nginx
+sudo chown -R nginx:nginx /etc/nginx
 # sed -i '1s/.*/user nginx;/' /etc/nginx/nginx.conf
-sed -i 's/\b80\b/8080/g' /etc/nginx/sites-enabled/default
+sudo sed -i 's/\b80\b/8080/g' /etc/nginx/sites-enabled/default
