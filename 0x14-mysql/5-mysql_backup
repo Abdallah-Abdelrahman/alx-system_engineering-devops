@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# dump all sql databases into a file
+TIME=$(date '+%d-%m-%Y')
+mysqldump --databases -uroot -p"$1" > backup.sql
+tar -vczf "${TIME}.tar.gz" backup.sql
