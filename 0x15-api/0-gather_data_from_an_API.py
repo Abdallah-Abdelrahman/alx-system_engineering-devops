@@ -5,9 +5,9 @@ about his/her TODO list progress
 Attrs:
     URL: endpoint to retrive the iformation from
 '''
-import sys
 from requests import get
 from requests.exceptions import HTTPError
+import sys
 
 URL = 'https://jsonplaceholder.typicode.com'
 
