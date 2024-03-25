@@ -17,7 +17,6 @@ if __name__ == '__main__':
     try:
         user = get(f'{URL}/users/{EMPLOYEE_ID}').json()
         todos = get(f'{URL}/todos?userId={EMPLOYEE_ID}').json()
-        print(user)
         data = {user.get('id'):
                 [
                 {'task': t.get('title'), 'completed': t.get('completed'),
