@@ -6,25 +6,27 @@ Attrs:
     URL: endpoint to retrive the iformation from
 '''
 from requests.exceptions import HTTPError
-from sys import argv
-from csv import writer, QUOTE_ALL
+from json import dumps
 from requests import get
+import sys
 
 URL = 'https://jsonplaceholder.typicode.com'
 
 if __name__ == '__main__':
-    EMPLOYEE_ID = argv[1]
+    EMPLOYEE_ID = sys.argv[1]
     try:
         completed = 0
         user = get(f'{URL}/users/{EMPLOYEE_ID}').json()
         todos = get(f'{URL}/todos?userId={EMPLOYEE_ID}').json()
-        data = []
-        for t in todos:
-            data.append([user.get('id'), user.get('username'),
-                         t.get('completed'), t.get('title')])
+        data = {user.get('id'):
+                [
+                {'task': t.get('title'), 'completed': t.get('completed'),
+                 'username': user.get('username')} for t in todos
+                ]
+                }
 
-        with open(f'{user.get("id")}.csv', 'w') as f:
-            w = writer(f, quoting=QUOTE_ALL).writerows(data)
+        with open(f'user.get("id").json', 'w') as f:
+            f.write(dumps(data))
 
     except HTTPError as http_err:
         print(http_err)
