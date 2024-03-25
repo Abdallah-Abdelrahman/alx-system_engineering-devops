@@ -18,16 +18,15 @@ if __name__ == '__main__':
         data = {}
 
         for u in users:
+            data.update({u.get('id'): []})
             for t in todos:
                 if u.get('id') == t.get('userId'):
-                    data.update({u.get('id'):
-                                 [
-                                 {'username': u.get('username'),
-                                  'task': t.get('title'),
-                                  'completed': t.get('completed')}
-                                 for t in todos
-                                 ]
-                                 })
+                    data[u.get('id')].append(
+                            {'username': u.get('username'),
+                             'task': t.get('title'),
+                             'completed': t.get('completed')
+                             }
+                            )
 
         with open('todo_all_employees.json', 'w') as f:
             f.write(dumps(data))
