@@ -15,9 +15,9 @@ URL = 'https://jsonplaceholder.typicode.com'
 if __name__ == '__main__':
     EMPLOYEE_ID = sys.argv[1]
     try:
-        completed = 0
         user = get(f'{URL}/users/{EMPLOYEE_ID}').json()
         todos = get(f'{URL}/todos?userId={EMPLOYEE_ID}').json()
+        print(user)
         data = {user.get('id'):
                 [
                 {'task': t.get('title'), 'completed': t.get('completed'),
@@ -25,7 +25,7 @@ if __name__ == '__main__':
                 ]
                 }
 
-        with open(f'user.get("id").json', 'w') as f:
+        with open(f'{user.get("id")}.json', 'w') as f:
             f.write(dumps(data))
 
     except HTTPError as http_err:
