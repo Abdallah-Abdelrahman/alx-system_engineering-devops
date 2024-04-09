@@ -21,12 +21,12 @@ def number_of_subscribers(subreddit):
 
     url = "{}/r/{}/about.json".format(BASE_URL, subreddit)
     # Custom User-Agent header to avoid Too Many Requests error
-    headers = {'User-Agent': 'MyBot/0.1'}
+    headers = {'User-Agent': 'Chrome/120.0.0.0'}
+
     try:
         resp = get(url, headers=headers, allow_redirects=False)
         if not (200 <= resp.status_code <= 299):
             # status is not success
-            print(None)
             return 0
         data = resp.json()
         if 'data' in data and 'subscribers' in data['data']:
