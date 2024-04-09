@@ -18,7 +18,7 @@ def top_ten(subreddit):
     '''
 
     # Limit to the first 10 hot posts
-    endpoint = "{}/r/{}/hot.json?limit=10".format(BASE_URL, subreddit)
+    endpoint = "{}/r/{}/hot.json?limit=9".format(BASE_URL, subreddit)
     # Custom User-Agent header to avoid Too Many Requests error
     headers = {'User-Agent': 'Chrome/120.0.0.0'}
 
