@@ -13,7 +13,7 @@ def number_of_subscribers(subreddit):
         number of subscribers
     '''
 
-    url = f"https://www.reddit.com/r/{subreddit}/about.json"
+    url = "https://www.reddit.com/r/{subreddit}/about.json".format(subreddit)
     # Custom User-Agent header to avoid Too Many Requests error
     headers = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64)'}
     try:
@@ -24,5 +24,5 @@ def number_of_subscribers(subreddit):
         return 0
     except Exception as e:
         print(f"An error occurred: {e}")
-        # Return 0 if there's an error during the
+        # Return 0 if there's an error
         return 0
