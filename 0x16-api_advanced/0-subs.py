@@ -28,6 +28,6 @@ def number_of_subscribers(subreddit):
         # status is not success
         return 0
     data = resp.json()
-    if 'data' in data and 'subscribers' in data['data']:
-        return data['data']['subscribers']
+    if 'data' in data and 'subscribers' in data.get('data'):
+        return data.get('data').get('subscribers')
     return 0
