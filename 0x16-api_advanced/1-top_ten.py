@@ -20,7 +20,7 @@ def top_ten(subreddit):
     # Limit to the first 10 hot posts
     endpoint = "{}/r/{}/hot.json?limit=10".format(BASE_URL, subreddit)
     # Custom User-Agent header to avoid Too Many Requests error
-    headers = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64)'}
+    headers = {'User-Agent': 'MyBot/0.1'}
     try:
         response = get(endpoint, headers=headers, allow_redirects=False)
         data = response.json()
@@ -28,7 +28,7 @@ def top_ten(subreddit):
             children = data.get('data').get('children')
             for post in children:
                 print(post.get('data').get('title'))
+        else:
+            print(None)
     except Exception:
-        print("None")
-        # Return 0 if there's an error
-        return 0
+        print(None)
