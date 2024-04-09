@@ -26,8 +26,3 @@ def number_of_subscribers(subreddit):
         print(f"An error occurred: {e}")
         # Return 0 if there's an error during the
         return 0
-
-
-if __name__ == '__main__':
-    import sys
-    print(number_of_subscribers(sys.argv[1]))
