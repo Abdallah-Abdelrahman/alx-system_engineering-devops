@@ -1,6 +1,12 @@
 #!/usr/bin/python3
-'''Query the Reddit API and returns the number of subscribers'''
+'''Query the Reddit API and returns the number of subscribers
+
+Attrs:
+    BASE_URL(str): url for reddit
+'''
 from requests import get
+
+BASE_URL = 'https://www.reddit.com'
 
 
 def number_of_subscribers(subreddit):
@@ -13,7 +19,7 @@ def number_of_subscribers(subreddit):
         number of subscribers
     '''
 
-    url = "https://www.reddit.com/r/{subreddit}/about.json".format(subreddit)
+    url = "{}/r/{}/about.json".format(BASE_URL, subreddit)
     # Custom User-Agent header to avoid Too Many Requests error
     headers = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64)'}
     try:
