@@ -17,7 +17,7 @@ def number_of_subscribers(subreddit):
     # Custom User-Agent header to avoid Too Many Requests error
     headers = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64)'}
     try:
-        response = get(url, headers=headers)
+        response = get(url, headers=headers, allow_redirects=False)
         data = response.json()
         if 'data' in data and 'subscribers' in data['data']:
             return data['data']['subscribers']
