@@ -4,8 +4,8 @@
 Attrs:
     BASE_URL(str): reddit url
 '''
-from requests import get
 from re import findall
+from requests import get
 
 BASE_URL = 'https://www.reddit.com'
 
