@@ -17,11 +17,11 @@ def recurse(subreddit, hot_list=[], after=None):
     Args:
         subreddit(str): subreddit to query
         hot_list(List(dict)): optoinal list hot posts
-        idx(int): index of the current article
         after(None|str): optoinal argument to paginate to next page
+    Returns:
+        list of hot articles' title
     '''
 
-    # Limit to the first 10 hot posts
     endpoint = "{}/r/{}/hot.json".format(BASE_URL, subreddit)
     if after:
         endpoint += '?after={}'.format(after)
