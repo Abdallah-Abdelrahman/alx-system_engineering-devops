@@ -22,8 +22,12 @@ def top_ten(subreddit):
     # Custom User-Agent header to avoid Too Many Requests error
     headers = {'User-Agent': 'MyBot/0.1'}
     try:
-        response = get(endpoint, headers=headers, allow_redirects=False)
-        data = response.json()
+        resp = get(endpoint, headers=headers, allow_redirects=False)
+        data = resp.json()
+        if not (200 <= resp.status_code <= 299):
+            # status is not success
+            print(None)
+            return
         if 'data' in data and 'children' in data.get('data'):
             children = data.get('data').get('children')
             for post in children:

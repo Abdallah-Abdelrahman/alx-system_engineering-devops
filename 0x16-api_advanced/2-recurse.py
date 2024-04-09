@@ -10,13 +10,14 @@ from requests import get
 BASE_URL = 'https://www.reddit.com'
 
 
-def recurse(subreddit, hot_list=[], after=None):
+def recurse(subreddit, hot_list=[], idx=0, after=None):
 
     '''queries the Reddit API and prints the titles of all hot articles
 
     Args:
         subreddit(str): subreddit to query
         hot_list(List(dict)): optoinal list hot posts
+        idx(int): index of the current article
         after(None|str): optoinal argument to paginate to next page
     '''
 
@@ -37,9 +38,19 @@ def recurse(subreddit, hot_list=[], after=None):
         if 'data' in data and 'children' in data.get('data'):
             children = data.get('data').get('children')
             after = data.get('data').get('after')
+            print_titles(hot_list=children)
+            '''
             for post in children:
                 print(post.get('data').get('title'))
+            '''
             if after:
-                recurse(subreddit, after=after)
+                recurse(subreddit, hot_list=hot_list, idx=idx, after=after)
     except Exception:
         print(None)
+
+
+def print_titles(hot_list=[], idx=0):
+    '''print title of article '''
+    if len(hot_list) and len(hot_list) - 1 != idx:
+        print(hot_list[idx].get('data').get('title'))
+        print_titles(hot_list=hot_list, idx=idx+1)
