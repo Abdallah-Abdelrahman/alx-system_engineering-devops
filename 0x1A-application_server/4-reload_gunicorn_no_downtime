@@ -7,4 +7,4 @@ but will not send them new requests, once the worker is done, it is will be shut
 and start new ones with the new application code or configuration, then move on to the other old workers until it has renewed the whole pool.
 _COMMENT_
 
-pkill -HUP gunicorn
+kill -HUP "$(ps -C gunicorn fch -o pid | head -n 1)"
