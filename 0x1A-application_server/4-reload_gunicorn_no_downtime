@@ -7,4 +7,9 @@ but will not send them new requests, once the worker is done, it is will be shut
 and start new ones with the new application code or configuration, then move on to the other old workers until it has renewed the whole pool.
 _COMMENT_
 
-kill -HUP "$(ps -C gunicorn fch -o pid | head -n 1)"
+for pid_ in $(pgrep gunicorn); do
+	PPID=$(grep -i 'ppid' /proc/"$pid_"/status | awk '{print $2}')
+	if ((PPID == 1)); then
+		kill -HUP "$PPID"
+	fi
+done
