@@ -1,2 +1,2 @@
 # fix 'holberton' user limit
-exec {'sed -i "s/\d+/65535/g" /etc/security/limit.conf': path => '/bin'}
+exec {'sed -i "s/^/#/g" /etc/security/limit.conf': path => '/bin'}
