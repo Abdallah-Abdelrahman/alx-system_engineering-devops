@@ -8,9 +8,8 @@ and start new ones with the new application code or configuration, then move on 
 _COMMENT_
 
 for pid_ in $(pgrep gunicorn); do
-	# PPID_=$(grep -i 'ppid' /proc/"$pid_"/status | awk '{print $2}')
-	# if ((PPID_ == 1)); then
-	# 	kill -HUP "$pid_"
-	# fi
-	kill -HUP "$pid_"
+	PPID_=$(grep -i 'ppid' /proc/"$pid_"/status | awk '{print $2}')
+	if ((PPID_ == 1)); then
+		kill -HUP "$pid_"
+	fi
 done
